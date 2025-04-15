@@ -42,7 +42,7 @@ The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuri
 ### 🚀 Step 1a: Install CircuitPython on RP2040 Manually (Skip to Thonny method Step1b for Students)
 
 1. **Enter Bootloader Mode**
-   - Hold the **BOOTSEL** button, Macro-Key SW_F, on your RP2040 Macro-KeyPad DevBoard.
+   - Hold the **BOOTSEL** button (Macro-Key SW_F), on your RP2040 Macro-KeyPad DevBoard.
    - Plug in the USB cable to your computer.
    - Release the BOOTSEL button.
    - A new drive named `RPI-RP2` will appear.
@@ -57,7 +57,7 @@ The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuri
 ### 🚀 Step 1b: Install CircuitPython via Thonny
 
 1. Plug your RP2040 Macro-KeyPad DevBoard into your computer via USB.
-   - (Hold the **BOOTSEL** button, Macro-Key SW_F, while plugging in only if you're flashing it for the first time.)
+   - (Hold the **BOOTSEL** button (Macro-Key SW_F), while plugging in only if you're flashing it for the first time.)
 2. Open **Thonny IDE**.
 3. Go to **Tools > Options > Interpreter**.
 4. Set:
@@ -101,7 +101,7 @@ Hit `F5` or the Green Run button on the tool panel to write the script. If Every
 #### 📦 Install NeoPixel Library
 
 1. Download the [CircuitPython Library Bundle](https://circuitpython.org/libraries), we will be using the zip file under "Bundle for Version 9.x".
-2. From the bundle, copy:
+2. From the bundle *`lib/`* folder, copy:
    - `neopixel.mpy` & `adafruit_pixelbuf.mpy` → to `CIRCUITPY/lib/`  
    *(Create a `lib/` folder if it doesn’t exist)*
 
