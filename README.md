@@ -1,6 +1,12 @@
 # RP2040_MacroKeyPad_DevBoard
 
+<img src="https://github.com/TomatoCube18/RP2040_MacroKeyPad_DevBoard/blob/main/images/Board_TopView.jpg"  width="600" height="auto" /> 
 The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuring a Raspberry Pi RP2040 MCU Packed with various peripherals i.e., 6 tactile Cherry MX keys with vibrant per-key NeoPixel LEDs, a built-in speaker, power/user LEDs, and a I²C temperature sensor. There's also a Qwiic connector for further I²C expansion. This board is perfect as a desktop Gadget or for diving into embedded dev in Circuit/MicroPython, or Arduino.
+
+
+<br>
+
+<br>
 
 **Board Features:**
 
@@ -15,6 +21,11 @@ The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuri
   - 1x I2C QWiic Connector (SDA-GPIO20, SCL-GPIO21)
   - 1x On-Board Speaker with Amplifier with Low-Power Shutdown (Audio-GPIO16, Shutdown-GPIO14)
 
+<br>
+
+<img src="https://github.com/TomatoCube18/RP2040_MacroKeyPad_DevBoard/blob/main/images/Board_BottomView.jpg"  width="500" height="auto" /> <img src="https://github.com/TomatoCube18/RP2040_MacroKeyPad_DevBoard/blob/main/images/MacroKeyPad02.jpg"  width="500" height="auto" />
+
+<br>
 <br>
 
 ## CircuitPython Quick Start Guide with Thonny IDE:
@@ -259,6 +270,8 @@ while True:
         time.sleep(0.2)
 
 ```
-
+<br>
 
 You are now ready to define more keys and assign different keystrokes for a full macro pad setup!
+
+<img src="https://github.com/TomatoCube18/RP2040_MacroKeyPad_DevBoard/blob/main/images/MacroKeyPad01.jpg"  width="600" height="auto" /> 
