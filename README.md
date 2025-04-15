@@ -39,7 +39,9 @@ The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuri
 
 <br>
 
-### 🚀 Step 1a: Install CircuitPython on RP2040 Manually (Skip to Thonny method Step1b for Students)
+### 🚀 Step 1: Install CircuitPython on RP2040 
+
+#### [Option A] Install CircuitPython on RP2040 Manually
 
 1. **Enter Bootloader Mode**
    - Hold the **BOOTSEL** button (Macro-Key SW_F), on your RP2040 Macro-KeyPad DevBoard.
@@ -50,11 +52,11 @@ The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuri
 2. **Copy CircuitPython UF2**
    - Download the latest `.uf2` file from [circuitpython.org](https://circuitpython.org/board/raspberry_pi_pico/).
    - Drag and drop it into the `RPI-RP2` drive.
-   - The board will reboot and mount as `CIRCUITPY`.
+   - ✅ The board will reboot and mount as `CIRCUITPY`.
 
-<br>
 
-### 🚀 Step 1b: Install CircuitPython via Thonny
+
+#### [Option B] Install CircuitPython via Thonny
 
 1. Plug your RP2040 Macro-KeyPad DevBoard into your computer via USB.
    - (Hold the **BOOTSEL** button (Macro-Key SW_F), while plugging in only if you're flashing it for the first time.)
