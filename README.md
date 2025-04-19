@@ -1,6 +1,13 @@
 # RP2040_MacroKeyPad_DevBoard
 
+<img src="https://github.com/TomatoCube18/RP2040_MacroKeyPad_DevBoard/blob/main/images/Board_TopView.jpg"  width="600" height="auto" />
+
 The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuring a Raspberry Pi RP2040 MCU Packed with various peripherals i.e., 6 tactile Cherry MX keys with vibrant per-key NeoPixel LEDs, a built-in speaker, power/user LEDs, and a I²C temperature sensor. There's also a Qwiic connector for further I²C expansion. This board is perfect as a desktop Gadget or for diving into embedded dev in Circuit/MicroPython, or Arduino.
+
+
+<br>
+
+<br>
 
 **Board Features:**
 
@@ -17,6 +24,11 @@ The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuri
 
 <br>
 
+<img src="https://github.com/TomatoCube18/RP2040_MacroKeyPad_DevBoard/blob/main/images/Board_BottomView.jpg"  width="500" height="auto" /> <img src="https://github.com/TomatoCube18/RP2040_MacroKeyPad_DevBoard/blob/main/images/MacroKeyPad02.jpg"  width="500" height="auto" />
+
+<br>
+<br>
+
 ## CircuitPython Quick Start Guide with Thonny IDE:
 
 ### 🧰 What You’ll Need to get started:
@@ -28,10 +40,12 @@ The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuri
 
 <br>
 
-### 🚀 Step 1a: Install CircuitPython on RP2040 Manually (Skip to Thonny method Step1b for Students)
+### 🚀 Step 1: Install CircuitPython on RP2040 
+
+#### [Option A] Install CircuitPython on RP2040 Manually
 
 1. **Enter Bootloader Mode**
-   - Hold the **BOOTSEL** button, Macro-Key SW_F, on your RP2040 Macro-KeyPad DevBoard.
+   - Hold the **BOOTSEL** button (Macro-Key SW_F), on your RP2040 Macro-KeyPad DevBoard.
    - Plug in the USB cable to your computer.
    - Release the BOOTSEL button.
    - A new drive named `RPI-RP2` will appear.
@@ -39,14 +53,14 @@ The **RP2040 Macro-KeyPad DevBoard** is an open-source hardware platform featuri
 2. **Copy CircuitPython UF2**
    - Download the latest `.uf2` file from [circuitpython.org](https://circuitpython.org/board/raspberry_pi_pico/).
    - Drag and drop it into the `RPI-RP2` drive.
-   - The board will reboot and mount as `CIRCUITPY`.
+   - ✅ The board will reboot and mount as `CIRCUITPY`.
 
-<br>
 
-### 🚀 Step 1b: Install CircuitPython via Thonny
+
+#### [Option B] Install CircuitPython via Thonny
 
 1. Plug your RP2040 Macro-KeyPad DevBoard into your computer via USB.
-   - (Hold the **BOOTSEL** button, Macro-Key SW_F, while plugging in only if you're flashing it for the first time.)
+   - (Hold the **BOOTSEL** button (Macro-Key SW_F), while plugging in only if you're flashing it for the first time.)
 2. Open **Thonny IDE**.
 3. Go to **Tools > Options > Interpreter**.
 4. Set:
@@ -90,7 +104,7 @@ Hit `F5` or the Green Run button on the tool panel to write the script. If Every
 #### 📦 Install NeoPixel Library
 
 1. Download the [CircuitPython Library Bundle](https://circuitpython.org/libraries), we will be using the zip file under "Bundle for Version 9.x".
-2. From the bundle, copy:
+2. From the bundle *`lib/`* folder, copy:
    - `neopixel.mpy` & `adafruit_pixelbuf.mpy` → to `CIRCUITPY/lib/`  
    *(Create a `lib/` folder if it doesn’t exist)*
 
@@ -259,6 +273,8 @@ while True:
         time.sleep(0.2)
 
 ```
-
+<br>
 
 You are now ready to define more keys and assign different keystrokes for a full macro pad setup!
+
+<img src="https://github.com/TomatoCube18/RP2040_MacroKeyPad_DevBoard/blob/main/images/MacroKeyPad01.jpg"  width="600" height="auto" /> 
