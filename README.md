@@ -136,110 +136,135 @@ Combining all that we know till this step, we are going to try out Cherry Key Bu
 #### 🔧 Sample Code
 
 ```python
-import time
-import array
-import math
 import board
 import digitalio
+import pwmio
+import array
+import math
 import neopixel
-from audiocore import RawSample
-from audiopwmio import PWMAudioOut as AudioOut
+import time
 
+# Enable Neopixel
 pixel_pin = board.GP19
 num_pixels = 6
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.5, auto_write=False)
 pixels.fill((0, 0, 0))
 pixels.show()
 
-button1 = digitalio.DigitalInOut(board.GP1)
-button1.switch_to_input(pull=digitalio.Pull.UP)
-button2 = digitalio.DigitalInOut(board.GP2)
-button2.switch_to_input(pull=digitalio.Pull.UP)
-button3 = digitalio.DigitalInOut(board.GP3)
-button3.switch_to_input(pull=digitalio.Pull.UP)
-button4 = digitalio.DigitalInOut(board.GP4)
-button4.switch_to_input(pull=digitalio.Pull.UP)
-button5 = digitalio.DigitalInOut(board.GP5)
-button5.switch_to_input(pull=digitalio.Pull.UP)
-button6 = digitalio.DigitalInOut(board.GP0)
-button6.switch_to_input(pull=digitalio.Pull.UP)
-
-
-sine_wave_sample = []
-
-def createToneWave(frequency=440): # Set freq to the Hz of the tone you want to generate.
-    global sine_wave_sample
-    tone_volume = 0.8  # Increase this to increase the volume of the tone.
-    length = 8000 // frequency
-    sine_wave = array.array("H", [0] * length)
-    for i in range(length):
-        sine_wave[i] = int((1 + math.sin(math.pi * 2 * i / length)) * tone_volume * (2 ** 15 - 1))
-    sine_wave_sample = RawSample(sine_wave)
-
+# Enable amplifier (active low)
 audio_en = digitalio.DigitalInOut(board.GP14)
 audio_en.direction = digitalio.Direction.OUTPUT
 audio_en.value = True	# Asserted/Active Low OnBoard Amplifier
 
-audio = AudioOut(board.GP16)
+# Create PWM object on GPIO16 for audio output
+audio = pwmio.PWMOut(board.GP16, duty_cycle=0, frequency=440, variable_frequency=True)
+
+def play_tone(frequency, duration_ms):
+    audio.frequency = frequency
+    audio.duty_cycle = 65536 // 2  # 50% volume square wave
+    time.sleep(duration_ms / 1000.0)
+    audio.duty_cycle = 0  # Stop tone
+    time.sleep(0.01)
+
+# Turn on Amplifier
+audio_en.value = False
+time.sleep(0.25)
+
+# TomatoCube Welcome melody
+play_tone(659, 90)  # NOTE_E5
+time.sleep(0.01)
+play_tone(587, 90)  # NOTE_D5
+time.sleep(0.01)
+play_tone(370, 90)  # NOTE_FS4
+time.sleep(0.01)
+
+# Turn off Amplifier
+audio_en.value = True
+
+
+# Setup the keys
+keys = {
+    "Sw_A": digitalio.DigitalInOut(board.GP1),
+    "Sw_B": digitalio.DigitalInOut(board.GP2),
+    "Sw_C": digitalio.DigitalInOut(board.GP3),
+    "Sw_D": digitalio.DigitalInOut(board.GP4),
+    "Sw_E": digitalio.DigitalInOut(board.GP5),
+    "Sw_F": digitalio.DigitalInOut(board.GP0),
+}
+
+for key in keys.values():
+    key.direction = digitalio.Direction.INPUT
+    key.pull = digitalio.Pull.UP 
 
 
 while True:
-    if not button1.value:
+        
+    if not keys['Sw_A'].value:
+        # Turn on Amplifier
+        audio_en.value = False
+        time.sleep(0.25)
+        
         pixels.fill((128, 0, 0))	# Red
         pixels.show()
-        audio_en.value = False
-        createToneWave(262)
-        audio.play(sine_wave_sample, loop=True)
-        time.sleep(1)
-        audio.stop()
+        play_tone(262, 250)  # NOTE_C4
+        
+        # Turn off Amplifier
         audio_en.value = True
-    elif not button2.value:
+    elif not keys['Sw_B'].value:
+        # Turn on Amplifier
+        audio_en.value = False
+        time.sleep(0.25)
+        
         pixels.fill((128, 128, 0))	# Yellow
         pixels.show()
-        audio_en.value = False
-        createToneWave(294)
-        audio.play(sine_wave_sample, loop=True)
-        time.sleep(1)
-        audio.stop()
+        play_tone(294, 250)  # NOTE_D4
+        
+        # Turn off Amplifier
         audio_en.value = True
-    elif not button3.value:
+    elif not keys['Sw_C'].value:
+        # Turn on Amplifier
+        audio_en.value = False
+        time.sleep(0.25)
+        
         pixels.fill((0, 128, 0))	# Green
         pixels.show()
-        audio_en.value = False
-        createToneWave(330)
-        audio.play(sine_wave_sample, loop=True)
-        time.sleep(1)
-        audio.stop()
+        play_tone(330, 250)  # NOTE_E4
+        
+        # Turn off Amplifier
         audio_en.value = True
-    elif not button4.value:
+    elif not keys['Sw_D'].value:
+        # Turn on Amplifier
+        audio_en.value = False
+        time.sleep(0.25)
+        
         pixels.fill((0, 0, 128))	# Blue
         pixels.show()
-        audio_en.value = False
-        createToneWave(349)
-        audio.play(sine_wave_sample, loop=True)
-        time.sleep(1)
-        audio.stop()
+        play_tone(349, 250)  # NOTE_F4
+        
+        # Turn off Amplifier
         audio_en.value = True
-    elif not button5.value:
+    elif not keys['Sw_E'].value:
+        # Turn on Amplifier
+        audio_en.value = False
+        time.sleep(0.25)
+        
         pixels.fill((128, 0, 128))	# Magenta
         pixels.show()
-        audio_en.value = False
-        createToneWave(392)
-        audio.play(sine_wave_sample, loop=True)
-        time.sleep(1)
-        audio.stop()
+        play_tone(392, 250)  # NOTE_G4
+        
+        # Turn off Amplifier
         audio_en.value = True
-    elif not button6.value:
+    elif not keys['Sw_F'].value:
+        # Turn on Amplifier
+        audio_en.value = False
+        time.sleep(0.25)
+        
         pixels.fill((128, 128, 128))	# White
         pixels.show()
-        audio_en.value = False
-        createToneWave(440)
-        audio.play(sine_wave_sample, loop=True)
-        time.sleep(1)
-        audio.stop()
+        play_tone(440, 250)  # NOTE_A4
+        
+        # Turn off Amplifier
         audio_en.value = True
-    else:
-        pass
 
 ```
 <br>
